@@ -58,3 +58,5 @@ You should use markdown syntax to write article, just like write readme in githu
 
 You can use 3 ``` to write code block.
 您可以使用 3 ''' 来编写代码块。
+
+更多可以查看 [jekyll官方教程](https://jekyllrb.com/docs/pages/)
