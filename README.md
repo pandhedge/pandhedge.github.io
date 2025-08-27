@@ -38,7 +38,7 @@
     * [5. Local launch](#5-local-launch)
     * [6. Push to GitHub](#6-push-to-github)
 * [Donate](#donate)
-* [Update Log](#update-log)
+* # [Update Log](#update-log)
 * [License](#license)
 
 ## Preview

@@ -122,3 +122,39 @@ You can use 3 ``` to write code block.
 
 您可能希望源文件具有针对构建站点而更改的特定文件夹结构。使用[永久链接](https://jekyllrb.com/docs/permalinks/)，您可以完全控制输出 URL。
 
+##### 引用图片
+
+你可以按照以下方式操作：
+
+1. **创建自定义图片目录**
+   比如在仓库根目录新建 `images` 或 `pics` 等目录存放图片，例如：
+
+   ```plaintext
+   你的仓库/
+   ├── _posts/
+   ├── images/       # 自定义图片目录
+   │   ├── pic1.jpg
+   │   └── pic2.png
+   └── index.md
+   ```
+
+2. **引用方式**
+   在 Markdown 或 HTML 中通过相对路径引用：
+
+   ```markdown
+   <!-- 从 index.md 引用 images 目录下的图片 -->
+   ![示例图片](images/pic1.jpg)
+   
+   <!-- 从 _posts/2023-01-01-post.md 引用 -->
+   ![示例图片](../images/pic1.jpg)
+   ```
+
+3. **如果图片在其他分支**
+   同样可以用 GitHub 原始文件 URL 引用，例如：
+
+   ```markdown
+   ![外部分支图片](https://raw.githubusercontent.com/你的用户名/仓库名/分支名/自定义目录/图片名.jpg)
+   ```
+
+核心原则是：路径要与你的实际目录结构对应，相对路径从当前文件位置出发，绝对路径从仓库根目录出发（以 `/` 开头）。
+
