@@ -15,15 +15,46 @@ type: page
 
 
 
+## 属性点
+
+```markdown
+生命值：
+
+
+```
+
+## 技能组
+
+```markdown
+软件：
+```
+
+## 规划
+
+```markdown
+
+```
+
+## 时间表
+
+```markdown
+
+```
+
 ## 联系我
 
-* GitHub：
+```mark\
+GitHub：pandhedge
 
-* email：
+email：1533192487@qq.com
 
-  
+
+```
 
 ## 友情链接
+
+```markdown
+```
 
 
 
