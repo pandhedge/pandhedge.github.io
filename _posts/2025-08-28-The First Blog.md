@@ -8,8 +8,11 @@ author: Haoyang Gao
 mathjax: true
 ---
 
+* content
+{:toc}
 
-### Write post 写帖子
+
+## Write post 写帖子
 
 
 
@@ -60,3 +63,25 @@ You can use 3 ``` to write code block.
 您可以使用 3 ''' 来编写代码块。
 
 更多可以查看 [jekyll官方教程](https://jekyllrb.com/docs/pages/)
+
+## 模板
+
+```
+---
+layout: post
+title:  "对这个 jekyll 博客主题的改版和重构"
+date:   2025-08-12 11:40:18 +0800
+categories: jekyll
+tags: jekyll 
+author: PandHedge
+mathjax: true
+---
+* content
+{:toc}
+
+## 标题
+
+filename: 2025-08-28-FileName.md
+
+```
+
