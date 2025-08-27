@@ -84,20 +84,19 @@ lv1  [----------------------] 0/22
 
 ## 联系我
 
-```mark\
----
+
 GitHub：pandhedge
 
 email：1533192487@qq.com
 
----
-```
+
+
 
 ## 友情链接
 
-```markdown
+
 [明前奶绿](https://laplace.live/about)
-```
+
 
 
 
