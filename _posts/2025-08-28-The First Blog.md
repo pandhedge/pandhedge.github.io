@@ -66,22 +66,46 @@ You can use 3 ``` to write code block.
 
 ## 模板
 
+`filename: 2025-08-28-FileName.md`
+
 ```
 ---
 layout: post
-title:  "对这个 jekyll 博客主题的改版和重构"
-date:   2025-08-12 11:40:18 +0800
-categories: jekyll
-tags: jekyll 
+title:  "第一次写博客"
+date:   2025-08-28 01:57:00 +0800
+categories: Daily
+tags: Daily 
 author: PandHedge
 mathjax: true
 ---
 * content
 {:toc}
 
-## 标题
+## 计划
 
-filename: 2025-08-28-FileName.md
+- [ ]  今日目标
+- [ ]  今日目标
+
+
+---
+
+## 今日
+
+-  <02:00> 
+-  
+
+
+---
+
+## 目标
+
+- 目标
+- 目标
+
+
+---
+
+## 评论
 
 ```
 
