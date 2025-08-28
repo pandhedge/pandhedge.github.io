@@ -2,21 +2,16 @@
 layout: page
 title: Live
 permalink: /live/
-icon: fa-battery-3
+icon: pencil
 type: page
 ---
-
-
-
 统计
 
 ---
+```
 
+男儿当自强！
 
-
-​	男儿当自强！
-
-​							
-
+```
 ---
 
