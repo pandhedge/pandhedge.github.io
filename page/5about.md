@@ -95,7 +95,7 @@ lv1  [----------------------] 0/22
 
 ## 友情链接
 
-​    [明前奶绿](https://laplace.live/about)
+​    [明前奶绿](https://laplace.live/about)    [Font Awesome Icons](https://fontawesome.com/v4/icons/)
 
 
 ## Comments
