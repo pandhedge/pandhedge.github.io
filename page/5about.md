@@ -45,8 +45,10 @@ lv1  [----------------------] 0/22
     └─ 机体性能
 ```
 
+---
 
 ## 规划
+
 ```
 └─ 规划                    #一年   #三月   #三周   
     ├─ 长期计划
@@ -83,6 +85,7 @@ lv1  [----------------------] 0/22
     └─ 21：00 睡觉
 ```
 
+---
 ## 联系我
 
 >
@@ -95,7 +98,7 @@ lv1  [----------------------] 0/22
 
 ## 友情链接
 
-​    |>[明前奶绿](https://laplace.live/about)   |>[Font Awesome Icons](https://fontawesome.com/v4/icons/)   |>[新闻联播](https://tv.cctv.com/live/index.shtml?spm=C28340.PdNvWY0LYxCP.ExZVtb8wXWPT.1)    |>[新闻联播](https://tv.cctv.com/live/index.shtml?spm=C28340.PdNvWY0LYxCP.ExZVtb8wXWPT.1)
+​    |>[明前奶绿](https://laplace.live/about)   |>[Font Awesome Icons](https://fontawesome.com/v4/icons/)   |>[新闻联播](https://tv.cctv.com/live/index.shtml?spm=C28340.PdNvWY0LYxCP.ExZVtb8wXWPT.1)    |>[Emiru](https://www.twitch.tv/emiru/videos?filter=archives&sort=time)
 
 
 ## Comments
