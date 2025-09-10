@@ -45,8 +45,17 @@
  * variables
  */
 // Import partials from `sass_dir` (defaults to `_sass`)
-@import "reset", "header", "post", "page", "syntax-highlighting", "index", "demo", "footer", "scrollbar", "backToTop";
-// 两个人在列车上相遇
+// 替换原来的一行 @import，改为多行 @use
+@use "reset";
+@use "header";
+@use "post";
+@use "page";
+@use "syntax-highlighting";
+@use "index";
+@use "demo";
+@use "footer";
+@use "scrollbar";
+@use "backToTop";
 // 一段旅程充满了诗意
 // 你突然说你要下车
 // 去寻找属于你的灵魂和身体
