@@ -14,6 +14,10 @@ mathjax: true
 
 # 使用 .NET MAUI 生成移动应用和桌面应用
 
+
+
+
+
 .NET MAUI 是一种多平台框架，用于使用 C# 和 **XAML** (Extensible Application Markup Language) 创建本机桌面和移动应用。 借助 .NET MAUI（多平台应用程序用户界面），可设计能够在 Windows、Android、iOS、iPadOS 和 macOS 上运行的移动应用。
 
 ## 描述 .NET MAUI 体系结构
