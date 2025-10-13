@@ -1,0 +1,306 @@
+---
+layout: post
+title:  "Linux常见指令"
+date:   2025-08-28 20:18:00 +0800
+categories: 软件测试
+tags: 软件测试 python  
+author: PandHedge
+mathjax: true
+---
+
+# Linux常见指令
+
+## 常见指令
+
+| 指令     | 功能描述                                 | 常见用法示例                                        | 参数 / 选项解释                                              |                                                              |
+| -------- | ---------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ls       | 列出目录内容（含权限、硬链接、软链接等） | `ls -lhi`                                           | `-l`：显示详细信息（含权限、硬链接数）；`-h`：人类可读大小；`-i`：显示 inode（硬链接关联）；软链接会显示`-> 目标路径` |                                                              |
+| chmod    | 修改文件 / 目录权限                      | `chmod 755 script.sh` 或 `chmod u+x file.txt`       | `755`：权限数值（所有者 rwx，组和其他 rx）；`u+x`：给所有者添加执行权限（u = 所有者，+= 添加，x = 执行） |                                                              |
+| cat      | 展示文件内容（可合并文件）               | `cat -n log.txt` 或 `cat a.txt b.txt`               | `-n`：显示行号；无参数时直接输出文件内容，多文件时合并显示   |                                                              |
+| echo     | 输出内容到终端或文件                     | `echo "hello" > test.txt` 或 `echo "hi" >> log.txt` | `>`：覆盖写入文件；`>>`：追加写入文件；无重定向时输出到终端  |                                                              |
+| touch    | 新建空文件（或更新文件时间戳）           | `touch newfile.txt` 或 `touch a.txt b.txt`          | 无特殊参数，直接指定文件名，可同时创建多个                   |                                                              |
+| mkdir    | 创建目录（-p 支持多级目录）              | `mkdir -p dir1/dir2/subdir`                         | `-p`：若父目录不存在则自动创建，避免 “目录不存在” 错误       |                                                              |
+| cp       | 复制文件 / 目录                          | `cp -ri source.txt dest/` 或 `cp -r dir1 dir2`      | `-r`：递归复制目录；`-i`：覆盖前提示确认；无`-r`时复制文件   |                                                              |
+| mv       | 移动文件 / 目录（或重命名）              | `mv file.txt dir/` 或 `mv oldname.txt newname.txt`  | 无特殊参数，移动到目标路径则为移动，路径不变仅改名为重命名；`-i`：覆盖前提示 |                                                              |
+| rm       | 删除文件 / 目录                          | `rm -rf dir/` 或 `rm -i file.txt`                   | `-r`：递归删除目录；`-f`：强制删除（不提示）；`-i`：删除前提示确认 |                                                              |
+| pwd      | 显示当前工作目录路径                     | `pwd`                                               | 无参数，直接输出当前所在绝对路径                             |                                                              |
+| tree     | 以树形结构展示目录层级                   | `tree -L 2 /home`                                   | `-L 2`：限制显示层级（此处为 2 级）；无参数时默认显示当前目录所有层级 |                                                              |
+| du       | 查看文件 / 目录的磁盘占用大小            | `du -sh /var/log` 或 `du -a dir/`                   | `-s`：仅显示总大小；`-h`：人类可读单位（K/M/G）；`-a`：显示所有文件大小（不仅目录） |                                                              |
+| cd       | 切换工作目录                             | `cd /usr/local` 或 `cd ..` 或 `cd ~`                | `..`：切换到父目录；`~`：切换到当前用户家目录；直接跟路径切换到目标目录 |                                                              |
+| tail     | 查看文件尾部内容（支持实时跟踪）         | `tail -n 10 log.txt` 或 `tail -f app.log`           | `-n 10`：显示最后 10 行；`-f`：实时跟踪文件更新（常用于日志监控） |                                                              |
+| grep     | 在文件中搜索匹配的字符串                 | `grep -ir "error" /var/log`                         | `-i`：忽略大小写；`-r`：递归搜索目录下所有文件；引号内为待搜索关键词 |                                                              |
+| top      | 实时查看系统进程动态（CPU / 内存占用）   | `top -d 3`                                          | `-d 3`：设置刷新间隔为 3 秒；默认实时刷新，按`q`退出         |                                                              |
+| reboot   | 重启系统                                 | `reboot` 或 `sudo reboot`                           | 无参数，普通用户需加`sudo`获取权限                           |                                                              |
+| shutdown | 关机或重启系统                           | `shutdown -h now` 或 `shutdown -r +10`              | `-h`：关机；`now`：立即执行；`-r`：重启；`+10`：10 分钟后执行 |                                                              |
+| exit     | 退出当前 shell 会话（终端 / SSH 等）     | `exit`                                              | 无参数，关闭当前终端窗口或退出远程登录会话                   |                                                              |
+| ps       | 查看系统当前运行的进程                   | `ps aux` 或 `ps -ef                                 | grep python`                                                 | `aux`：显示所有用户进程（详细信息）；`-ef`：显示全格式进程；常与`grep`配合筛选 |
+
+在服务器测试过程中，指令的使用通常围绕**性能监控、网络检查、进程管理、日志分析、系统状态查询**等场景。以下是按场景分类的常用指令及作用：
+
+| 场景分类         | 常用指令           | 核心作用（服务器测试场景）                                   | 典型示例                                                     |                                            |
+| ---------------- | ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------ |
+| **性能监控**     | top/htop           | 实时查看 CPU、内存、进程占用（定位资源瓶颈）                 | `top -d 2`（每 2 秒刷新一次，查看高占用进程）                |                                            |
+|                  | vmstat             | 监控系统进程、内存、IO、CPU 负载（长期性能趋势分析）         | `vmstat 5 10`（每 5 秒采样 1 次，共 10 次，看内存 swap 和 IO 等待） |                                            |
+|                  | iostat             | 查看磁盘 IO 读写速度、使用率（测试磁盘性能或 IO 瓶颈）       | `iostat -x 3`（每 3 秒显示一次磁盘详细 IO 统计，关注 % util 指标） |                                            |
+|                  | free               | 查看内存使用情况（测试服务内存泄漏或资源分配）               | `free -h`（以人类可读单位显示总内存、已用、空闲）            |                                            |
+|                  | df                 | 检查磁盘空间占用（避免测试中磁盘满导致服务异常）             | `df -h /`（查看根目录磁盘使用率）                            |                                            |
+| **网络检查**     | ping               | 测试服务器与目标 IP / 域名的连通性（验证网络可达性）         | `ping -c 4 baidu.com`（发送 4 个包，测试与百度的连通性）     |                                            |
+|                  | telnet/netstat     | 检查端口是否开放（验证服务监听状态，如 80/443 端口）         | `telnet 127.0.0.1 8080`（测试本地 8080 端口是否可连接）      |                                            |
+|                  | ss                 | 查看网络连接状态（替代 netstat，更高效，如 TCP 连接数）      | `ss -tuln`（显示所有监听的 TCP/UDP 端口及状态）              |                                            |
+|                  | tcpdump            | 网络抓包分析（排查测试中网络协议异常，如请求超时、数据传输错误） | `tcpdump -i eth0 port 80 -w test.pcap`（抓取 eth0 网卡 80 端口流量到文件） |                                            |
+|                  | curl/wget          | 测试 HTTP/HTTPS 服务响应（验证接口可用性、状态码）           | `curl -I http://localhost:8080`（查看服务返回的 HTTP 头信息） |                                            |
+| **进程与服务**   | ps                 | 查看运行中的进程（验证服务是否启动，如 nginx、mysql）        | `ps aux                                                      | grep nginx`（筛选 nginx 相关进程）         |
+|                  | systemctl          | 管理系统服务（启动 / 停止 / 重启服务，测试服务启停稳定性）   | `systemctl restart mysql`（重启 mysql 服务，测试重启后是否正常） |                                            |
+|                  | pstree             | 以树形展示进程关系（分析服务子进程是否正常创建）             | `pstree -p                                                   | grep python`（查看 python 进程的子进程树） |
+| **日志与文件**   | tail               | 实时跟踪日志文件（测试中监控服务输出日志，抓取错误信息）     | `tail -f /var/log/nginx/error.log`（实时查看 nginx 错误日志） |                                            |
+|                  | grep               | 搜索日志中的关键词（定位测试中出现的错误、警告）             | `grep "ERROR" /var/log/app.log`（从应用日志中搜索 ERROR 级别的记录） |                                            |
+|                  | cat/tac            | 查看文件内容（完整读取配置文件或历史日志，验证配置是否正确） | `cat /etc/nginx/nginx.conf`（查看 nginx 配置文件）           |                                            |
+|                  | scp                | 远程传输文件（测试中上传测试数据、下载日志到本地分析）       | `scp test.txt user@192.168.1.100:/tmp/`（上传文件到远程服务器 /tmp 目录） |                                            |
+| **系统信息**     | uname              | 查看服务器系统版本（确认测试环境与生产环境一致性）           | `uname -a`（显示完整系统信息，包括内核版本、架构）           |                                            |
+|                  | lsb_release        | 查看 Linux 发行版信息（如 Ubuntu/CentOS 版本，验证环境兼容性） | `lsb_release -a`（显示发行版名称、版本号）                   |                                            |
+|                  | uptime             | 查看服务器运行时间（判断是否需要重启，或测试服务长期运行稳定性） | `uptime`（显示当前时间、运行时长、负载均值）                 |                                            |
+| **压力测试辅助** | ab（Apache Bench） | HTTP 压力测试工具（测试 Web 服务并发能力，如 QPS、响应时间） | `ab -n 1000 -c 100 http://localhost/`（100 并发，共 1000 请求测试） |                                            |
+|                  | stress             | 系统压力测试（模拟 CPU / 内存负载，测试服务在高负载下的稳定性） | `stress --cpu 4 --timeout 60s`（用 4 核 CPU 压力测试 60 秒） |                                            |
+| **安全与权限**   | firewall-cmd/ufw   | 查看防火墙规则（验证测试端口是否开放，避免被防火墙拦截）     | `firewall-cmd --list-ports`（列出开放的端口）                |                                            |
+|                  | chmod/chown        | 修改文件权限 / 所有者（测试服务权限配置是否正确，如日志文件写入权限） | `chmod 777 /var/log/app.log`（临时开放日志文件读写权限测试） |                                            |
+
+这些指令覆盖了服务器测试中**环境验证、功能测试、性能测试、问题排查**等核心环节，实际使用时需结合具体场景（如 Web 服务、数据库服务、中间件等）灵活组合。
+
+## [systemctl]([linux systemctl 指令 —— 阮一峰 - 七脉 - 博客园](https://www.cnblogs.com/zwcry/p/9602756.html))
+
+对于用户来说，最常用的是下面这些命令，用于启动和停止 Unit（主要是 service）。
+
+```
+# 立即启动一个服务
+$ sudo systemctl start apache.service
+
+# 立即停止一个服务
+$ sudo systemctl stop apache.service
+
+# 重启一个服务
+$ sudo systemctl restart apache.service
+
+# 杀死一个服务的所有子进程
+$ sudo systemctl kill apache.service
+
+# 重新加载一个服务的配置文件
+$ sudo systemctl reload apache.service
+
+# 重载所有修改过的配置文件
+$ sudo systemctl daemon-reload
+
+# 显示某个 Unit 的所有底层参数
+$ systemctl show httpd.service
+
+# 显示某个 Unit 的指定属性的值
+$ systemctl show -p CPUShares httpd.service
+
+# 设置某个 Unit 的指定属性
+$ sudo systemctl set-property httpd.service CPUShares=500
+
+```
+
+配置文件就是普通的文本文件，可以用文本编辑器打开。
+
+`systemctl cat`命令可以查看配置文件的内容。
+
+```
+$ systemctl cat atd.service
+
+[Unit]
+Description=ATD daemon
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/atd
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+以下是其常见应用场景及具体命令：
+
+| 应用场景                   | 常见命令示例                                  | 作用说明                                                     |
+| -------------------------- | --------------------------------------------- | ------------------------------------------------------------ |
+| **服务生命周期管理**       | `systemctl start nginx`                       | 启动指定服务（如 nginx）                                     |
+|                            | `systemctl stop nginx`                        | 停止指定服务                                                 |
+|                            | `systemctl restart nginx`                     | 重启指定服务（先停止再启动，适用于配置变更后）               |
+|                            | `systemctl reload nginx`                      | 重载服务配置（不停止服务，适用于 nginx、apache 等支持热重载的服务） |
+|                            | `systemctl try-restart nginx`                 | 仅当服务正在运行时才重启（避免服务未启动时的错误提示）       |
+| **服务状态查询**           | `systemctl status nginx`                      | 查看服务详细状态（是否运行、PID、最近日志、启动状态等）      |
+|                            | `systemctl is-active nginx`                   | 仅判断服务是否活跃（返回 `active` 或 `inactive`）            |
+|                            | `systemctl is-enabled nginx`                  | 查看服务是否设置为开机自启（返回 `enabled`/`disabled`/`masked` 等） |
+|                            | `systemctl list-units --type=service`         | 列出所有已加载的服务单元（含状态）                           |
+|                            | `systemctl list-unit-files --type=service`    | 列出所有服务单元的开机自启配置（无论是否运行）               |
+| **开机自启配置**           | `systemctl enable nginx`                      | 启用服务开机自启（下次开机自动启动）                         |
+|                            | `systemctl disable nginx`                     | 禁用服务开机自启（下次开机不自动启动）                       |
+|                            | `systemctl enable --now nginx`                | 立即启动服务并设置开机自启（一步完成启动 + 自启配置）        |
+|                            | `systemctl mask nginx`                        | 彻底屏蔽服务（禁止手动或自动启动，需 `unmask` 解除）         |
+| **系统状态控制**           | `systemctl reboot`                            | 重启系统（等价于 `reboot` 命令）                             |
+|                            | `systemctl poweroff`                          | 关闭系统（等价于 `shutdown -h now`）                         |
+|                            | `systemctl suspend`                           | 暂停系统（进入休眠状态，保存内存数据到 RAM）                 |
+|                            | `systemctl hibernate`                         | 休眠系统（将内存数据写入磁盘，断电后不丢失）                 |
+|                            | `systemctl rescue`                            | 进入救援模式（单用户模式，用于系统修复）                     |
+| **运行级别（target）管理** | `systemctl get-default`                       | 查看当前默认运行级别（如 `multi-user.target` 对应命令行模式） |
+|                            | `systemctl set-default multi-user.target`     | 设置默认运行级别为命令行模式（无图形界面）                   |
+|                            | `systemctl isolate graphical.target`          | 临时切换到图形界面模式（需安装图形环境）                     |
+| **服务依赖与日志**         | `systemctl list-dependencies nginx`           | 查看服务的依赖关系（哪些服务依赖当前服务启动）               |
+|                            | `systemctl list-dependencies --reverse nginx` | 查看依赖当前服务的其他服务                                   |
+|                            | `journalctl -u nginx`                         | 查看指定服务的日志（结合 `systemd-journald` 日志系统）       |
+| **挂载点管理**             | `systemctl list-units --type=mount`           | 查看所有挂载点状态（等价于 `mount` 命令，但更简洁）          |
+|                            | `systemctl start mnt-data.mount`              | 手动挂载指定挂载点（对应 `/etc/fstab` 或 `/etc/systemd/system/` 中的配置） |
+
+##### 4.2 创建一个新的自启动脚本
+
+```text
+sudo nano /lib/systemd/system/teamspeak.service
+```
+
+这时会打开一个编辑器，在其中输入如下内容：
+
+> 其中/home/lighthouse/teamspeak3是你的ts路径，如果你改了这里面的路径，下文中的统一都得改。
+
+```text
+[Unit]
+Description=TeamSpeak 3 Server
+After=network.target
+[Service]
+WorkingDirectory=/home/lighthouse/teamspeak3
+User=root
+Type=forking
+ExecStart=/home/lighthouse/teamspeak3/ts3server_startscript.sh start inifile=ts3server.ini
+ExecStop=/home/lighthouse/teamspeak3/ts3server_startscript.sh stop
+PIDFile=/home/lighthouse/teamspeak3/ts3server.pid
+RestartSec=15
+Restart=always
+[Install]
+WantedBy=multi-user.target
+```
+
+输入完成后，按Ctrl+O写入文件，再按Ctrl+M保存，最后按Ctrl+X退出。
+
+##### 4.3 启动服务
+
+启用脚本
+
+```text
+systemctl enable teamspeak.service
+```
+
+启动脚本
+
+```text
+systemctl start teamspeak.service
+```
+
+因为这里用的root权限，start可能会报错如下
+
+```text
+Job for teamspeak.service failed because the control process exited with error code. See "systemctl status teamspeak.service" and "journalctl -xe" for details.
+```
+
+这时忽略并再次输入：
+
+```text
+systemctl start teamspeak.service
+```
+
+最后输入如下命令检查运行状态：
+
+```text
+systemctl | grep teamspeak.service
+```
+
+到这里配置就全部完成了，接下来进入客户端。
+
+## Linux目录结构
+
+* ![image-20250720115804000](C:\Users\lin\Downloads\github\Typora\img\image-20250720115804000.png)
+
+
+
+## Linux 系统架构和组成
+
+ 内核-->系统库-->Shell-->应用程序
+
+* **内核**：系统的核心和基础，负责管理系统的硬件和提供最基础的系统服务。包含：设备驱动程序、进程管理、内存管理、文件系统、网络协议栈等等。
+* **系统库**：用于支持应用程序开发的软件库，提供一些常用的函数和接口。
+* **Shell**:命令行解释器，用户使用Linux系统的接口，它接受用户输入的命令，然后传递给操作系统来执行。
+* **应用程序**：如提供页面访问服务的Nginx\数据库服务的MySQL
+
+## Vi编辑器
+
+![image-20250720102232629](C:\Users\lin\Downloads\github\Typora\img\image-20250720102232629.png)
+
+### 插入模式
+
+![image-20250720102550916](C:\Users\lin\Downloads\github\Typora\img\image-20250720102550916.png)
+
+r 替换模式 R持续替换模式
+
+
+
+### **尾行模式**
+
+`:q 退出`  `:wq 保存并退出` :q! 强制退出
+
+`：set number\nu 显示行号`  `:set nonu 关闭行号显示`
+
+`:50 跳转到文件第五十行`
+
+`:set ic 全局忽略大小写设置` `:set noic`
+
+**替换** `:n1,n2s/old/new/g`
+
+n1,n2 n1行到n2行(1，$ 第一行到最后一行)           s表示替换 
+
+/g表示全局，匹配到的行内全部对应内容(如果不加，只会替换匹配到的第一行的第一个内容)
+
+### **命令模式**
+
+**复制粘贴删除** 
+
+`yy 复制内容` `2yy 复制两行内容 数字表示行数`
+
+`p 粘贴内容` `3p 粘贴三次内容 数字表示次数`
+
+`dd 删除内容`  `p 将刚刚删除内容粘贴到下一行`
+
+x 删除光标所在字符 X删除光标前一个字符
+
+**移动光标** 
+
+`H J K L 左上下右` `^ 行首`  `$ 行尾` 
+
+`G 跳转到文件最后一行` `gg 跳转到文件第一行` `100G 跳转到文件第100行`
+
+**翻页** 
+
+`ctrl+f` 向前翻页 `ctrl+b` 向后翻页 `ctrl+u` 向上翻半页 `ctrl+d` 向下翻半页
+
+**查找**
+
+`/Hello 从光标位置向下查找Hello`  `?Hello 从光标位置向上查找` 
+
+`n 继续查找下一个(与之前方向相同)` `N 向相反方向查找`
+
+`/Hello\c 不区分大小写`
+
+**撤销**  `u`
+
+
+
+## SHELL
+
+### 常见用法
+
+```shell
+dpkg -l  # 列出所有已安装软件包（内容较多）
+
+dpkg -l | grep <关键词>  # 过滤包含关键词的软件包
+
+dpkg -S /usr/bin/ls   # 查找 `/usr/bin/ls` 属于哪个软件包：
+
+```
+
