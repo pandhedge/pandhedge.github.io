@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "对这个博客的使用"
-date:   2025-08-28 01:12:00 +0800
+date:   2025-10-12 01:12:00 +0800
 categories: jekyll
 tags: jekyll markdown 
 author: Haoyang Gao

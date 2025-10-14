@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "服务器硬件与测试知识"
-date:   2025-08-28 20:18:00 +0800
+date:   2025-10-12 20:18:00 +0800
 categories: 软件测试
 tags: 软件测试 python  
 author: PandHedge
